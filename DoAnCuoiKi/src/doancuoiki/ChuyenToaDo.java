@@ -51,7 +51,7 @@ public class ChuyenToaDo {
             else {
                 if(this.getX()>600){
                     tem1=Math.round((this.getX()-600)/5);
-                    this.setY(tem1);
+                    this.setX(tem1);
                 }
             }
         }
