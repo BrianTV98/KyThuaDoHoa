@@ -14,6 +14,7 @@ import java.awt.Graphics;
 public class Line {
     Pixel goc1;
     Pixel goc2;
+    Graphics g;
 
     public Line(Pixel goc1, Pixel goc2) {
         this.goc1 = goc1;
@@ -37,6 +38,9 @@ public class Line {
     }
     public void Drawline(Graphics g){
         goc1.draw(g);
+        for(int i=goc1.getX();i<goc2.getX();i=i+5){
+             new Pixel(i, goc1.getY()).draw(g);
+        }
         goc2.draw(g);
     }
     

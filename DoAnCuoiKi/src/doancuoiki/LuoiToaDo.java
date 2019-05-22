@@ -24,6 +24,7 @@ import javax.swing.Timer;
  */
 class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để vẽ
      private List <Pixel> pixel= new LinkedList<Pixel>();
+     Line line= new Line(new Pixel(600,400 ), new Pixel(1000, 400));
      int x=3;
      int y=5;
      Timer tm= new Timer(10, this); // Timer(a,b); a la thoi gian delay;
@@ -39,6 +40,7 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
              p.draw(g);
          }
          putpixel(x, y, (Graphics2D) g);
+          line.Drawline(g);
          tm.start();
      }
       public void doDraw(Graphics2D g){
