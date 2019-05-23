@@ -42,4 +42,7 @@ public class Pixel  {
             g.drawLine(chuyen.getX()-2, chuyen.getY()+i, chuyen.getX()+2, chuyen.getY()+i);
         }
     }
+    public  void TinhTien(){
+        
+    }
 }
