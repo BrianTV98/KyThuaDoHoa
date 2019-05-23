@@ -24,11 +24,11 @@ import javax.swing.Timer;
  */
 class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để vẽ
      private List <Pixel> pixel= new LinkedList<Pixel>();
-     Line line= new Line(new Pixel(10,10 ), new Pixel(30, 60));
+     Line line= new Line(new Pixel(10,10 ), new Pixel(10, 60));
      Pixel p1= new Pixel(0,10);
      int x=3;
      int y=5;
-     Timer tm= new Timer(10, this); // Timer(a,b); a la thoi gian delay;
+     Timer tm= new Timer(50, this); // Timer(a,b); a la thoi gian delay;
      public void addPixel(Pixel p){
          pixel.add(p);
          this.repaint();
@@ -48,7 +48,7 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
      public  void demo(Graphics g){
         putpixel(x, y, (Graphics2D) g);
         p1.draw(g);
-       
+       line.Bresenham(g);
      }
       public void doDraw(Graphics2D g){
         this.keLine(g);
@@ -100,7 +100,8 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        x=x+2;
+//         p1.TinhTien(1, 1);
+//           line.TinhTien(1, 0);
         repaint();//To change body of generated methods, choose Tools | Templates.
     }
 }

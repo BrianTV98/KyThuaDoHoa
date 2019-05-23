@@ -59,7 +59,21 @@ public class Line {
             tempX += x_unit;
              temp=new Pixel(tempX, tempY);
              temp.draw(g);
-         }
+        }
+        if(goc1.getX()==goc2.getX()){
+            
+            tempX=goc1.getX();
+            tempY=goc1.getY();
+//            new Pixel(1, tempY).draw(g);
+            while(tempY!=goc2.getY()){
+                tempY++;
+                new Pixel(tempX, tempY).draw(g);
+            }
+        }
+    }
+    public void TinhTien(int x1,int y1){
+        this.setGoc1(this.getGoc1().TinhTien(x1, y1));
+        this.setGoc2(this.getGoc2().TinhTien(x1, y1));
     }
     
 }
