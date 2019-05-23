@@ -11,7 +11,7 @@ import java.awt.Graphics;
  *
  * @author Mylov
  */
-public class Pixel {
+public class Pixel  {
     private int x;
     private int y;
 
@@ -36,9 +36,10 @@ public class Pixel {
         this.y = y;
     }
     public void draw(Graphics g){
+        ChuyenToaDo chuyen= new ChuyenToaDo(this.getX(), this.getY());
+        chuyen.NguoiDung_to_May();
          for(int i=-2;i<=2;i++){
-            g.drawLine(x-2, y+i, x+2, y+i);
+            g.drawLine(chuyen.getX()-2, chuyen.getY()+i, chuyen.getX()+2, chuyen.getY()+i);
         }
     }
-    
 }

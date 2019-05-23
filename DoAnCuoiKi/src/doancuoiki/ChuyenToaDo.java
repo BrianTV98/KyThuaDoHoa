@@ -9,33 +9,34 @@ package doancuoiki;
  *
  * @author Mylov
  */
-public class ChuyenToaDo {
-    int x;
-    int y;
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
+public class ChuyenToaDo  extends Pixel{
+//    int x;
+//    int y;
+//
+//    public int getX() {
+//        return x;
+//    }
+//
+//    public void setX(int x) {
+//        this.x = x;
+//    }
+//
+//    public int getY() {
+//        return y;
+//    }
+//
+//    public void setY(int y) {
+//        this.y = y;
+//    }
 
     public ChuyenToaDo(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
+//        this.x = x;
+//        this.y = y;
     }
     public  void ToaDoLuoi(){
-        this.setX((Math.round(x/5))*5);
-        this.setY((Math.round(y/5))*5);
+        super.setX((Math.round(super.getX()/5))*5);
+        super.setY((Math.round(super.getY()/5))*5);
     }
     public void ToaDoNguoiDung(){
         //xac dinh toa do x;
@@ -71,5 +72,11 @@ public class ChuyenToaDo {
             }
         }
         
+    }
+    public  Pixel NguoiDung_to_May(){
+        super.setX(600+super.getX()*5);
+        super.setY(400-5*super.getY());
+        Pixel pixel = new Pixel(super.getX(),super.getY());
+        return pixel;
     }
 }
