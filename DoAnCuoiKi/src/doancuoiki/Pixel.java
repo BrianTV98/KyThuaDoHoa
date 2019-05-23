@@ -31,9 +31,9 @@ public class Pixel  {
         this.y = y;
     }
 
-    public Pixel(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Pixel(int toaDoNguoiDungX, int toaDoNguoiDungY) {
+        this.x = toaDoNguoiDungX;
+        this.y = toaDoNguoiDungY;
     }
     public void draw(Graphics g){
         ChuyenToaDo chuyen= new ChuyenToaDo(this.getX(), this.getY());
