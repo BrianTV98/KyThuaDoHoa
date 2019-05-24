@@ -103,7 +103,7 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
     public void actionPerformed(ActionEvent e) {
          p1.TinhTien(1, 0);
 //           line.TinhTien(1, 0);
-        sq.TinhTien(1, 1);
+//        sq.TinhTien(1, 1);
         repaint();//To change body of generated methods, choose Tools | Templates.
     }
 }
