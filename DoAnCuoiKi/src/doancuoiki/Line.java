@@ -5,6 +5,7 @@
  */
 package doancuoiki;
 
+import com.sun.org.apache.bcel.internal.generic.L2D;
 import java.awt.Graphics;
 
 /**
@@ -76,9 +77,22 @@ public class Line {
             }
         }
     }
-    public void TinhTien(int x1,int y1){
-        this.setGoc1(this.getGoc1().TinhTien(x1, y1));
-        this.setGoc2(this.getGoc2().TinhTien(x1, y1));
+    public Line TinhTien(int x1,int y1){
+        return new Line(goc1.TinhTien(x1, y1), goc2.TinhTien(x1, y1));
+    }
+    public Line DoiXungOx(){
+//        this.goc1.DoiXungOx();
+//        this.goc2.DoiXungOx();
+        return new Line(goc1.DoiXungOx(), goc2.DoiXungOx());
+    }
+    public Line DoiXungOy(){
+        return  new Line(goc1.DoiXungOy(), goc2.DoiXungOy());
+    }
+    public Line DoiXungO(){
+        return new Line(goc1.DoiXungO(), goc2.DoiXungO());
+    }
+    public Line Rotate(float x){
+        return new Line(goc1.Quay(x), goc2.Quay(x));
     }
     
 }

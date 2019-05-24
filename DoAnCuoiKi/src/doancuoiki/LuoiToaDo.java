@@ -50,11 +50,14 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
         putpixel(x, y, (Graphics2D) g);
         p1.draw(g);
         line.Bresenham(g);
+        line.DoiXungO().Bresenham(g);
+        line.Rotate(135).Bresenham(g);
+//        line.Rotate(270).Bresenham(g);
 //        p1.Quay(-90);
 //        p1.Scaling(5,5);
         p1.draw(g);
         tm.stop();
-//        p1.Quay(90);
+        p1.Quay(90).draw(g);
 //        p1.draw(g);
         
         sq.draw(g);
