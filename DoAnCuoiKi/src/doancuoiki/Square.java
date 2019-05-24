@@ -64,10 +64,11 @@ public class Square {
         new Line(goc3, goc4).Bresenham(g);
     }
     public  void TinhTien(int x, int y){
-//        this.goc1.TinhTien(x, y);
-//        this.goc2.TinhTien(x, y);
-//        this.goc3.TinhTien(x, y);
-//        this.goc4.TinhTien(x, y);
+        this.goc1.TinhTien(x, y);
+        this.goc2.TinhTien(x, y);
+        this.goc3.TinhTien(x, y);
+        this.goc4.TinhTien(x, y);
     }
-    
+    public void Rotate(int Do){
+    }    
 }

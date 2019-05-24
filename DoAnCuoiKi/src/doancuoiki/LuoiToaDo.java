@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.sql.Time;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -23,13 +25,13 @@ import javax.swing.Timer;
  * @author Mylov
  */
 class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để vẽ
-     private List <Pixel> pixel= new LinkedList<Pixel>();
-     Line line= new Line(new Pixel(10,10 ), new Pixel(40, 10));
-     Pixel p1= new Pixel(0,10);
-     Square sq= new Square( new Pixel(0, 0), new Pixel(10, 10));
+     private List <Pixel> pixel= new LinkedList<Pixel>(); // test mouse Click
+     Line line= new Line(new Pixel(10,10 ), new Pixel(40, 10)); // test draw line
+     Pixel p1= new Pixel(10,0); // test Pixel
+     Square sq= new Square( new Pixel(20, 20), new Pixel(30, 30)); // test Hinh Chu Nhat;
      int x=3;
      int y=5;
-     Timer tm= new Timer(50, this); // Timer(a,b); a la thoi gian delay;
+     Timer tm= new Timer(1000, this); // Timer(a,b); a la thoi gian delay;
      public void addPixel(Pixel p){
          pixel.add(p);
          this.repaint();
@@ -42,13 +44,19 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
              p.draw(g);
          }
         demo(g);
-        
         tm.start();
      }
      public  void demo(Graphics g){
         putpixel(x, y, (Graphics2D) g);
         p1.draw(g);
-//        line.Bresenham(g);
+        line.Bresenham(g);
+//        p1.Quay(-90);
+//        p1.Scaling(5,5);
+        p1.draw(g);
+        tm.stop();
+//        p1.Quay(90);
+//        p1.draw(g);
+        
         sq.draw(g);
      }
       public void doDraw(Graphics2D g){
@@ -101,9 +109,11 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         p1.TinhTien(1, 0);
-//           line.TinhTien(1, 0);
-//        sq.TinhTien(1, 1);
+//         p1.TinhTien(1, 0);
+           line.TinhTien(1, 0);
+//        if(sq.goc1.getX()<20){
+//            sq.TinhTien(-1, -1);
+//        }
         repaint();//To change body of generated methods, choose Tools | Templates.
     }
 }
