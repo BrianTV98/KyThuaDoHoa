@@ -26,9 +26,9 @@ import javax.swing.Timer;
  */
 class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để vẽ
      private List <Pixel> pixel= new LinkedList<Pixel>(); // test mouse Click
-     Line line= new Line(new Pixel(10,10 ), new Pixel(40, 10)); // test draw line
+     Line line= new Line(new Pixel(10,10 ), new Pixel(30, 10)); // test draw line
      Pixel p1= new Pixel(10,0); // test Pixel
-     Square sq= new Square( new Pixel(20, 20), new Pixel(30, 30)); // test Hinh Chu Nhat;
+//     Square sq= new Square( new Pixel(20, 20), new Pixel(30, 30)); // test Hinh Chu Nhat;
      int x=3;
      int y=5;
      Timer tm= new Timer(1000, this); // Timer(a,b); a la thoi gian delay;
@@ -47,20 +47,22 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
         tm.start();
      }
      public  void demo(Graphics g){
-        putpixel(x, y, (Graphics2D) g);
+//        putpixel(x, y, (Graphics2D) g);
         p1.draw(g);
         line.Bresenham(g);
         line.DoiXungO().Bresenham(g);
         line.Rotate(135).Bresenham(g);
-//        line.Rotate(270).Bresenham(g);
-//        p1.Quay(-90);
+        line.Rotate(135).goc1.draw(g);
+        line.Rotate(135).goc2.draw(g);
+        line.Rotate(270).Bresenham(g);
+        p1.Quay(-90);
 //        p1.Scaling(5,5);
-        p1.draw(g);
-        tm.stop();
-        p1.Quay(90).draw(g);
+//        p1.draw(g);
+//        tm.stop();
+//        p1.Quay(135).draw(g);
 //        p1.draw(g);
         
-        sq.draw(g);
+//        sq.draw(g);
      }
       public void doDraw(Graphics2D g){
         this.keLine(g);
@@ -113,7 +115,7 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
     @Override
     public void actionPerformed(ActionEvent e) {
 //         p1.TinhTien(1, 0);
-           line.TinhTien(1, 0);
+//           line.TinhTien(1, 0);
 //        if(sq.goc1.getX()<20){
 //            sq.TinhTien(-1, -1);
 //        }

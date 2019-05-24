@@ -40,7 +40,7 @@ public class Line {
         this.goc2 = goc2;
     }
     public void Bresenham(Graphics g){
-        if(this.goc1.getX()>this.goc2.getX()||this.goc1.getY()>this.goc2.getY()){
+        if(this.goc1.getX()>this.goc2.getX()){
             Pixel gocTemp= goc1;
             goc1=goc2;
             goc2=gocTemp;
@@ -60,12 +60,21 @@ public class Line {
             if (p<0) p += c1;
             else{
                 p += c2;
-                tempY += y_unit;
+                if(goc1.getY()<=goc2.getY()){
+                    tempY += y_unit;
+                }
+                else{
+                    tempY -= y_unit;
+                }
             }
-            tempX += x_unit;
+             tempX += x_unit; 
              temp=new Pixel(tempX, tempY);
              temp.draw(g);
         }
+        //cum 3
+//        goc1.draw(g);
+//        goc2.draw(g);
+        //...
         if(goc1.getX()==goc2.getX()){
             
             tempX=goc1.getX();
@@ -76,6 +85,9 @@ public class Line {
                 new Pixel(tempX, tempY).draw(g);
             }
         }
+        //cum 4
+//        goc1.draw(g);
+//        goc2.draw(g);
     }
     public Line TinhTien(int x1,int y1){
         return new Line(goc1.TinhTien(x1, y1), goc2.TinhTien(x1, y1));
