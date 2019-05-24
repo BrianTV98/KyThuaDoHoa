@@ -39,6 +39,11 @@ public class Line {
         this.goc2 = goc2;
     }
     public void Bresenham(Graphics g){
+        if(this.goc1.getX()>this.goc2.getX()||this.goc1.getY()>this.goc2.getY()){
+            Pixel gocTemp= goc1;
+            goc1=goc2;
+            goc2=gocTemp;
+        }
         Pixel temp;
         int Dx = Math.abs(goc2.getX() - goc1.getX());
         int Dy = Math.abs(goc2.getY() - goc1.getY());
