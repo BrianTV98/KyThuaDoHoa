@@ -51,4 +51,30 @@ public class Pixel  {
     public void DoiXungOx(){
         this.y=-this.y;
     }
+    public void DoiXungOy(){
+        this.x=-this.y;
+    }
+    public void DoiXungO(){
+        this.x= -this.x;
+        this.y=-this.y;
+    }
+    public void Quay(double Do){
+        float radian= (float) Math.toRadians(Do);
+        int x1;
+        int y1;
+        if((Do%90)==0) {
+             x1=(int) (this.getX()*0-this.getY()*1);
+             y1= (int)(this.getX()*1+this.getY()*0);
+        }
+        else{
+            x1=(int) (this.getX()*Math.cos(radian)-this.getY()*Math.sin(radian));
+            y1= (int)(this.getX()*Math.sin(radian)+this.getY()*Math.cos(radian));
+        }
+        this.setX(x1);
+        this.setY(y1);
+    }
+    public void Scaling(int x, int y){
+        this.setX(this.getX()*x);
+        this.setY(this.getY()*y);
+    }
 }
