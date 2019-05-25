@@ -26,12 +26,14 @@ import javax.swing.Timer;
  */
 class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để vẽ
      private List <Pixel> pixel= new LinkedList<Pixel>(); // test mouse Click
-     Line line= new Line(new Pixel(10,10 ), new Pixel(30, 10)); // test draw line
-     Pixel p1= new Pixel(10,0); // test Pixel
-//     Square sq= new Square( new Pixel(20, 20), new Pixel(30, 30)); // test Hinh Chu Nhat;
+     Line line= new Line(new Pixel(0,0 ), new Pixel(20,0 )); // test draw line
+     Pixel p1= new Pixel(10,20); // test Pixel
+     Circle c= new Circle(new Pixel(20, 20), 20);
+     Rect sq= new Rect( new Pixel(10, 10), new Pixel(30, 30)); // test Hinh Chu Nhat;
+     Eclip eclip= new Eclip(new Pixel(0, 0), 20, 10);
      int x=3;
      int y=5;
-     Timer tm= new Timer(1000, this); // Timer(a,b); a la thoi gian delay;
+     Timer tm= new Timer(100, this); // Timer(a,b); a la thoi gian delay;
      public void addPixel(Pixel p){
          pixel.add(p);
          this.repaint();
@@ -41,21 +43,42 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
          super.paintComponent(g);
          doDraw((Graphics2D)g);
          for(Pixel p:pixel){
-             p.draw(g);
+//             p.draw(g);
          }
         demo(g);
         tm.start();
      }
      public  void demo(Graphics g){
-//        putpixel(x, y, (Graphics2D) g);
-        p1.draw(g);
-        line.Bresenham(g);
-        line.DoiXungO().Bresenham(g);
-        line.Rotate(135).Bresenham(g);
-        line.Rotate(135).goc1.draw(g);
-        line.Rotate(135).goc2.draw(g);
-        line.Rotate(270).Bresenham(g);
-        p1.Quay(-90);
+//           p1.draw(g, Color.GREEN);
+//           new Pixel(0, 10).draw(g, Color.yellow);
+//           p1.DoiXungQuaDiem(new Pixel(0,10)).draw(g, Color.BLACK);
+//           p1.QuayQuanhDiem(new Pixel(0, 10), 90).draw(g, Color.red);
+           sq.draw(g, Color.gray);
+           sq.Scaling(3,3).draw(g, Color.yellow);
+           sq.Quay(45).Scaling(2,2).draw(g, Color.gray);
+           sq.Quay(45).Scaling(2,2).DoiXungQuaDuongThang(new Pixel(0,0), new Pixel(20, 20)).draw(g, Color.gray);
+           new Line(new Pixel(0,0), new Pixel(20, 20)).Bresenham(g, Color.red);
+//         c.bresenhamCircle(g, Color.GREEN);
+//         c.Scaling(2, 2).bresenhamCircle(g, Color.yellow);
+
+//             eclip.ellipseMidPoint(g, Color.BLACK, false);
+//         p1.draw(g);
+//         p1.DoiXungQuaDuongThang(new Pixel(0, 0), new Pixel(20, 20)).draw(g);
+//         new Line(new Pixel(0, 0), new Pixel(20, 20)).Bresenham(g);
+//         p1.TinhTien(-p1.getX(), -p1.getY()).Quay(-Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).DoiXungOx().Quay(Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).TinhTien(p1.getX(), p1.getY());
+//         System.out.println();
+//        line.Bresenham(g,Color.BLACK);
+//        line.TinhTien(0, -2).Scaling(2, 0).Bresenham(g, Color.red);
+//         System.out.println(line.goc1.getX() +" : "+ line.goc1.getY());
+//        line.DoiXungO().Bresenham(g);
+//        line.Rotate(45).Bresenham(g);
+//        line.Rotate(90).Bresenham(g);
+//        line.Rotate(180).Bresenham(g);
+//        line.Rotate(135).Bresenham(g);
+//        line.Rotate(225).Bresenham(g);
+//        line.Rotate(270).Bresenham(g);
+//        line.Rotate(315).Bresenham(g);
+//        p1.Quay(-90);
 //        p1.Scaling(5,5);
 //        p1.draw(g);
 //        tm.stop();
@@ -114,11 +137,15 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-//         p1.TinhTien(1, 0);
-//           line.TinhTien(1, 0);
+         
+         if(p1.getX()!=0){
+             p1.TinhTien(1, 1);
+         }
+         else
+           line.TinhTien(1, 0);
 //        if(sq.goc1.getX()<20){
 //            sq.TinhTien(-1, -1);
 //        }
-        repaint();//To change body of generated methods, choose Tools | Templates.
+//        repaint();//To change body of generated methods, choose Tools | Templates.
     }
 }

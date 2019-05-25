@@ -29,7 +29,7 @@ public class ABC extends JPanel{
          super.paintComponent(g);
          doDraw((Graphics2D)g);
          for(Pixel p:pixel){
-             p.draw(g);
+             p.draw(g,Color.gray);
          }
      }
       public void doDraw(Graphics2D g){

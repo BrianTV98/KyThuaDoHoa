@@ -5,6 +5,7 @@
  */
 package doancuoiki;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 /**
@@ -35,17 +36,16 @@ public class Pixel  {
         this.x = toaDoNguoiDungX;
         this.y = toaDoNguoiDungY;
     }
-    public void draw(Graphics g){
+    public void draw(Graphics g,Color mau){
         ChuyenToaDo chuyen= new ChuyenToaDo(this.getX(), this.getY());
         chuyen.NguoiDung_to_May();
+        g.setColor(mau);
          for(int i=-2;i<=2;i++){
             g.drawLine(chuyen.getX()-2, chuyen.getY()+i, chuyen.getX()+2, chuyen.getY()+i);
         }
     }
     public  Pixel TinhTien(int x1, int y1){
-        this.x= this.x+x1;
-        this.y= this.y+y1;
-        return this;
+        return new Pixel(this.x+x1, this.y+y1);
     }
     
     public Pixel DoiXungOx(){
@@ -61,17 +61,21 @@ public class Pixel  {
         float radian= (float) Math.toRadians(Do);
         int x1;
         int y1;
-        if((Do%90)==0) {
-             x1=(int) (this. getX()*0-this.getY()*1);
-             y1= (int)(this.getX()*1+this.getY()*0);
-        }
-        else{
-            x1=(int) (this.getX()*Math.cos(radian)-this.getY()*Math.sin(radian));
-            y1= (int)(this.getX()*Math.sin(radian)+this.getY()*Math.cos(radian));
-        }
+            x1=(int) Math.round((this.getX()*Math.cos(radian)-this.getY()*Math.sin(radian)));
+            y1= (int)Math.round((this.getX()*Math.sin(radian)+this.getY()*Math.cos(radian)));
         return new Pixel(x1, y1);
     }
+    
     public Pixel Scaling(int x, int y){
         return  new Pixel(this.x*x, this.y*y);
+    }
+    public Pixel DoiXungQuaDuongThang(Pixel p1, Pixel p2){
+        return new Pixel(x, y).TinhTien(-p1.getX(), -p1.getY()).Quay(-Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).DoiXungOx().Quay(Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).TinhTien(p1.getX(), p1.getY());
+    }
+    public Pixel DoiXungQuaDiem(Pixel p1){
+        return new Pixel(x, y).TinhTien(-p1.getX(), -p1.getY()).DoiXungO().TinhTien(p1.getX(), p1.getY());
+    }
+    public Pixel QuayQuanhDiem(Pixel p1, float  Do){
+        return new Pixel(x, y).TinhTien(-p1.getX(),-p1.getY()).Quay(Do).TinhTien(p1.getX(), p1.getY());
     }
 }
