@@ -69,7 +69,7 @@ public class Eclip {
     }
     count++;
 }
-void ellipseMidPoint(Graphics g,Color color, boolean half_dotted)
+void draweEllipseMidPoint(Graphics g,Color color, boolean half_dotted)
 {
         int count = 0;
         int a2 = a*a;
@@ -110,5 +110,17 @@ void ellipseMidPoint(Graphics g,Color color, boolean half_dotted)
             }
             drawEllipse(g,x, y, Color.yellow, half_dotted);
         }
+    }
+    public Eclip DoiXungO(){
+        return new Eclip(tam.DoiXungO(), a, b);
+    }
+    public Eclip DoiXungOx(){
+        return new Eclip(tam.DoiXungOx(), a, b);
+    }
+    public Eclip DoiXungOy(){
+        return new Eclip(tam.DoiXungOy(), a, b);
+    }
+    public Eclip TinhTien(int x, int y){
+        return new Eclip(tam.TinhTien(x, y), a, b);
     }
 }

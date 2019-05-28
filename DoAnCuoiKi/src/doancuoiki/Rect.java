@@ -63,11 +63,15 @@ public class Rect {
         this.goc2 = goc2;
     }
     public void draw(Graphics g,Color mau){
+        
         new Line(goc1,goc2).Bresenham(g,mau);
         new Line(goc1, goc4).Bresenham(g,mau);
         new Line(goc2, goc3).Bresenham(g,mau);
         new Line(goc3, goc4).Bresenham(g,mau);
-        goc1.draw(g, Color.blue);
+        goc1.draw(g,Color.red);
+        goc2.draw(g,Color.RED);
+        goc3.draw(g, Color.RED);
+        goc4.draw(g, Color.RED);
     }
     public  Rect TinhTien(int x, int y){
         return new Rect(goc1.TinhTien(x, y), goc2.TinhTien(x, y), goc3.TinhTien(x, y), goc4.TinhTien(x, y));
@@ -75,11 +79,22 @@ public class Rect {
     public Rect Quay(int Do){
         return new Rect(goc1.Quay(Do), goc2.Quay(Do), goc3.Quay(Do), goc4.Quay(Do));
     }
+    public Rect DoiXungOx(){
+        return new Rect(goc1.DoiXungOx(), goc2.DoiXungOx(), goc3.DoiXungOx(), goc4.DoiXungOx());
+    }
+    public Rect DoiXungOy(){
+        return new Rect(goc1.DoiXungOy(), goc2.DoiXungOy(), goc3.DoiXungOy(), goc4.DoiXungOy());
+    }
+    public Rect DoiXungO(){
+        return new Rect(goc1.DoiXungO(), goc2.DoiXungO(), goc3.DoiXungO(), goc4.DoiXungO());
+    }
     public Rect Scaling(int x, int y){
-        return new Rect(goc1.TinhTien(-goc1.getX(), -goc1.getY()).Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()),
-                goc2.TinhTien(-goc1.getX(), -goc1.getY()).Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()),
-                goc3.TinhTien(-goc1.getX(), -goc1.getY()).Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()),
-                goc4.TinhTien(-goc1.getX(), -goc1.getY()).Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()));
+        return new Rect(
+                goc1.Scaling(x, y),goc2.Scaling(x, y),goc3.Scaling(x, y),goc4.Scaling(x, y));
+//                goc1.TinhTien(-goc1.getX(), -goc1..Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()),
+//                goc2.TinhTien(-goc1.getX(), -goc1.getY()).Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()),
+//                goc3.TinhTien(-goc1.getX(), -goc1.getY()).Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()),
+//                goc4.TinhTien(-goc1.getX(), -goc1.getY()).Scaling(x, y).TinhTien(goc1.getX(), goc1.getY()));
     }
     public Rect DoiXungQuaDuongThang(Pixel p1, Pixel p2){
         return new Rect(goc1.DoiXungQuaDuongThang(p1, p2),

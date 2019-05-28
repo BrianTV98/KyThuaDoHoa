@@ -38,10 +38,10 @@ public class Pixel  {
     }
     public void draw(Graphics g,Color mau){
         ChuyenToaDo chuyen= new ChuyenToaDo(this.getX(), this.getY());
-        chuyen.NguoiDung_to_May();
+        Pixel temPixel= new Pixel(chuyen.NguoiDung_to_May().getX(), chuyen.NguoiDung_to_May().getY());
         g.setColor(mau);
          for(int i=-2;i<=2;i++){
-            g.drawLine(chuyen.getX()-2, chuyen.getY()+i, chuyen.getX()+2, chuyen.getY()+i);
+            g.drawLine(temPixel.getX()-2, temPixel.getY()+i, temPixel.getX()+2, temPixel.getY()+i);
         }
     }
     public  Pixel TinhTien(int x1, int y1){

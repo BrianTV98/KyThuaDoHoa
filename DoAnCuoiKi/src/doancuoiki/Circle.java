@@ -67,6 +67,9 @@ public class Circle {
                 drawCircle( x, y,g,color);
             }
     }
+    public Circle Quay(int Do){
+        return new Circle(tam.Quay(Do), bankinh);
+    }
     public Circle TinhTien(int x,int y){
         return  new Circle(tam.TinhTien(x, y), bankinh);
     }

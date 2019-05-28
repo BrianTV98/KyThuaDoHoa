@@ -5,6 +5,7 @@
  */
 package doancuoiki;
 
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -17,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -26,73 +28,92 @@ import javax.swing.Timer;
  */
 class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để vẽ
      private List <Pixel> pixel= new LinkedList<Pixel>(); // test mouse Click
-     Line line= new Line(new Pixel(0,0 ), new Pixel(20,0 )); // test draw line
-     Pixel p1= new Pixel(10,20); // test Pixel
-     Circle c= new Circle(new Pixel(20, 20), 20);
-     Rect sq= new Rect( new Pixel(10, 10), new Pixel(30, 30)); // test Hinh Chu Nhat;
-     Eclip eclip= new Eclip(new Pixel(0, 0), 20, 10);
-     int x=3;
-     int y=5;
-     Timer tm= new Timer(100, this); // Timer(a,b); a la thoi gian delay;
+     int x=70;
+     int y=0;
+     int count=0;
+     int z=0;
+     MayBay maybay;
+     Zombie zombie;
+     Timer tm= new Timer(70, this); // Timer(a,b); a la thoi gian delay;
+     Pixel p= new Pixel(70, 0);
      public void addPixel(Pixel p){
          pixel.add(p);
          this.repaint();
      }
      public void paintComponent(Graphics g){
+         
+         doDraw((Graphics2D) g);
          super.getComponents();
          super.paintComponent(g);
-         doDraw((Graphics2D)g);
+         doDraw((Graphics2D) g);
          for(Pixel p:pixel){
-//             p.draw(g);
+             p.draw(g,Color.green);
          }
-        demo(g);
         tm.start();
      }
      public  void demo(Graphics g){
-//           p1.draw(g, Color.GREEN);
-//           new Pixel(0, 10).draw(g, Color.yellow);
-//           p1.DoiXungQuaDiem(new Pixel(0,10)).draw(g, Color.BLACK);
-//           p1.QuayQuanhDiem(new Pixel(0, 10), 90).draw(g, Color.red);
-           sq.draw(g, Color.gray);
-           sq.Scaling(3,3).draw(g, Color.yellow);
-           sq.Quay(45).Scaling(2,2).draw(g, Color.gray);
-           sq.Quay(45).Scaling(2,2).DoiXungQuaDuongThang(new Pixel(0,0), new Pixel(20, 20)).draw(g, Color.gray);
-           new Line(new Pixel(0,0), new Pixel(20, 20)).Bresenham(g, Color.red);
-//         c.bresenhamCircle(g, Color.GREEN);
-//         c.Scaling(2, 2).bresenhamCircle(g, Color.yellow);
-
-//             eclip.ellipseMidPoint(g, Color.BLACK, false);
-//         p1.draw(g);
-//         p1.DoiXungQuaDuongThang(new Pixel(0, 0), new Pixel(20, 20)).draw(g);
-//         new Line(new Pixel(0, 0), new Pixel(20, 20)).Bresenham(g);
-//         p1.TinhTien(-p1.getX(), -p1.getY()).Quay(-Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).DoiXungOx().Quay(Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).TinhTien(p1.getX(), p1.getY());
-//         System.out.println();
-//        line.Bresenham(g,Color.BLACK);
-//        line.TinhTien(0, -2).Scaling(2, 0).Bresenham(g, Color.red);
-//         System.out.println(line.goc1.getX() +" : "+ line.goc1.getY());
-//        line.DoiXungO().Bresenham(g);
-//        line.Rotate(45).Bresenham(g);
-//        line.Rotate(90).Bresenham(g);
-//        line.Rotate(180).Bresenham(g);
-//        line.Rotate(135).Bresenham(g);
-//        line.Rotate(225).Bresenham(g);
-//        line.Rotate(270).Bresenham(g);
-//        line.Rotate(315).Bresenham(g);
-//        p1.Quay(-90);
-//        p1.Scaling(5,5);
-//        p1.draw(g);
-//        tm.stop();
-//        p1.Quay(135).draw(g);
-//        p1.draw(g);
-        
-//        sq.draw(g);
+//         new Rect(new Pixel(20,20), new Pixel(50,50 )).draw(g, Color.GREEN);
+//         new Rect(new Pixel(20,20), new Pixel(50,50 )).QuayQuanhDiem(new Pixel(20,0 ), 45).draw(g, Color.GREEN);
+//         new Line(new Rect(new Pixel(20,20), new Pixel(50, 50)).QuayQuanhDiem(new Pixel(20,0), 30).getGoc1(), new Rect(new Pixel(20,20), new Pixel(50, 50)).QuayQuanhDiem(new Pixel(20,0), 30).getGoc2()).Bresenham(g, Color.gray);
+          if(count<50){
+              maybay= new MayBay(new Pixel(x, y).TinhTien(0, count));
+              zombie= new Zombie(new Pixel(-140, 50));
+              zombie.TinhTien(count,0 ).draw(g);
+              maybay.Draw(g);
+          }
+          if( count==50){
+              zombie.TinhTien(count,0 ).draw(g);
+              tm.setDelay(1000);
+              maybay.setPoint(new Pixel(70, 50));
+              maybay.TinhTien(-5, 0).Draw(g);
+              tm.setDelay(100);
+              }
+          if(count>50&&count<250){
+              if(count<170){
+                  zombie.TinhTien(40+ count/4,0 ).draw(g);
+              }
+              else {
+                  zombie.TinhTien( 83, 0).RungDau(g, (count-170)/4);
+//                  System.out.println(zombie.TinhTien( 83, 0).tamnao.getX()+": "+zombie.TinhTien( 83, 0).tamnao.getY()+": " +count);
+              };
+              tm.setDelay(10);
+              maybay.Draw(g);
+              new Pixel(70, 50).TinhTien(51-count, 0).draw(g, Color.red);
+          }
+          if(count>250&&count<400){
+              tm.setDelay(50);
+              if(count<280){
+                  zombie.TinhTien( 83, 0).RungDau(g,20+count-250);
+              }
+              else zombie.TinhTien( 83, 0).RungDau(g,50);
+              maybay.TinhTien(250-count,0).Draw(g);
+          }
+          if(count==400){
+              maybay= new MayBay(new Pixel(-80, 50));
+              maybay.Draw(g);
+          }
+          if(count>400&&count<580){
+              tm.setDelay(100);   
+              new Pixel(-57,0).draw(g, Color.YELLOW);
+              zombie.TinhTien( 83, 0).RungDau(g,50);
+              maybay.QuayQuanhDiem(new Pixel(-57, 0),count-400).Draw(g);
+          }
+          if(count>=580){
+              tm.setDelay(50);
+              zombie.TinhTien( 83, 0).RungDau(g,50);
+              maybay.QuayQuanhDiem(new Pixel(-57, 0),180).TinhTien(15,0 ).Scaling(2, 1).TinhTien(count-580, 0).Draw(g);
+          }
+          if(count>800) count=0;
      }
       public void doDraw(Graphics2D g){
         this.keLine(g);
         this.veTrucToaToa(g);
-        JPanel jpan= new JPanel(new FlowLayout());
-        jpan.setLayout(new FlowLayout(100, 50, 200));
-        jpan.setVisible(true);
+//        JPanel jpan= new JPanel(new FlowLayout());
+//        jpan.setLayout(new FlowLayout(100, 50, 200));
+        demo(g);
+        
+ 
+//        jpan.setVisible(true);
         
     }
      private  void putpixel(int x, int y, Graphics2D g){
@@ -113,8 +134,6 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
             g2d.drawLine(begin, 5, begin, 795);
             begin=begin+5;
         }
-        //line ngang
-        //reset begin;
         begin=5;
         while(begin<800){
             g2d.drawLine(5, begin, 1195, begin);
@@ -137,15 +156,8 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         
-         if(p1.getX()!=0){
-             p1.TinhTien(1, 1);
-         }
-         else
-           line.TinhTien(1, 0);
-//        if(sq.goc1.getX()<20){
-//            sq.TinhTien(-1, -1);
-//        }
-//        repaint();//To change body of generated methods, choose Tools | Templates.
+      count++;       
+        
+        this.repaint(10);//To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -20,18 +20,18 @@ public class PixelListener extends MouseAdapter{
         this.jpanel = jpanel;
     }
 
+    PixelListener(luoiToaDo3D luoi3d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
     
     @Override
     public void mouseClicked(MouseEvent e) {
         ChuyenToaDo a= new ChuyenToaDo(e.getX(), e.getY());
-        a.ToaDoLuoi();
-        jpanel.addPixel(new Pixel(a.getX(), a.getY()));//To change body of generated methods, choose Tools | Templates.
-        MainFrame.lbToaDoMT.setText  ("Tọa độ MT   :  "+ e.getX()+" : "+e.getY());
-        a.ToaDoLuoi();
-        MainFrame.lbToaDoLuoi.setText("Tọa độ lưới :  "+ a.getX()+ ":"+a.getY());
-        a.ToaDoNguoiDung();
-        MainFrame.lbToaDoNgD.setText ("Tọa độ NgD  :  "+ a.getX()+ ":"+a.getY());
+//        System.out.println(a.getX()+" : "+a.getY());
+        jpanel.addPixel(new Pixel(a.toToaDoNguoiDung().getX(), a.toToaDoNguoiDung().getY()));//To change body of generated methods, choose Tools | Templates.
+       
     }
     
     

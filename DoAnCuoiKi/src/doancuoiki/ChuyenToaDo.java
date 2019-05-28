@@ -13,52 +13,47 @@ public class ChuyenToaDo  extends Pixel{
 
     public ChuyenToaDo(int x, int y) {
         super(x, y);
-//        this.x = x;
-//        this.y = y;
     }
-    public  void ToaDoLuoi(){
-        super.setX((Math.round(super.getX()/5))*5);
-        super.setY((Math.round(super.getY()/5))*5);
+    public  Pixel toToaDoLuoi(){
+        return new Pixel((Math.round(super.getX()/5))*5, (Math.round(super.getY()/5))*5);
     }
-    public void ToaDoNguoiDung(){
+    public Pixel toToaDoNguoiDung(){
         //xac dinh toa do x;
+        Pixel p=new Pixel(0, 0);
         int tem1;
         if(this.getX()==600){
-            this.setX(0);
+            p.setX(0);
         }
         else{
             if(this.getX()<600){
                 tem1=Math.round(-(600-this.getX())/5);
-                this.setX(tem1);
+                p.setX(tem1);
             }
             else {
                 if(this.getX()>600){
                     tem1=Math.round((this.getX()-600)/5);
-                    this.setX(tem1);
+                    p.setX(tem1);
                 }
             }
         }
         if(this.getY()==400){
-            this.setY(0);
+            p.setY(0);
         }
         else{
             if(this.getY()>400){
                 tem1=Math.round((400-this.getY())/5);
-                this.setY(tem1);
+                p.setY(tem1);
             }
             else {
                 if(this.getY()<400){
                     tem1=Math.round(-(this.getY()-400)/5);
-                    this.setY(tem1);
+                    p.setY(tem1);
                 }
             }
         }
-        
+        return p;
     }
     public  Pixel NguoiDung_to_May(){
-        super.setX(600+super.getX()*5);
-        super.setY(400-5*super.getY());
-        Pixel pixel = new Pixel(super.getX(),super.getY());
-        return pixel;
+        return new Pixel(600+super.getX()*5, 400-5*super.getY());
     }
 }
