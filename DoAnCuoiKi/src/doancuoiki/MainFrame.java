@@ -592,6 +592,7 @@ public class MainFrame {
          btn2DThuCong.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
+                 XoaThongTinZombie();
                  Enable2DThuCong();
                  jFrame.remove(luoi);
                  jFrame.add(luoiThuCong);
