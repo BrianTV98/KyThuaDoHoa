@@ -201,4 +201,16 @@ public class Zombie {
         MainFrame.lbchanphai.setText("Chân Phải (Đường Thẳng) :("+ chanPhai.getGoc1().getX()+","+chanPhai.getGoc1().getY()+") ;("
                         +chanPhai.getGoc2().getX()+","+chanPhai.getGoc2().getY()+")");
     }
+    
+    public void XoaThongTinZombie(){
+        MainFrame.lbname2.setText("");
+        MainFrame.lbdauzom.setText("");
+        MainFrame.lbminhzom.setText("");
+        MainFrame.lbmattrai.setText("");
+        MainFrame.lbmatphai.setText("");
+        MainFrame.lbtayphai.setText("");
+        MainFrame.lbtaytrai.setText("");
+        MainFrame.lbchantrai.setText("");
+        MainFrame.lbchanphai.setText("");
+    }
 }

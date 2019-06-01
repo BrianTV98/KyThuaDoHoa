@@ -83,6 +83,8 @@ public class Point3D {
             vector[3] * transformMaxtrix[3][3]);
      return new Pixel(point.x, point.y);
     }
+    
+    
     public Point3D TinhTien(int x1, int y1, int z1){
         return new Point3D(x+x1, y+y1, z+z1);
     }

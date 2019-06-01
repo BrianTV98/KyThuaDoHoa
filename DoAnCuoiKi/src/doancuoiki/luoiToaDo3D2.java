@@ -20,11 +20,11 @@ import javax.swing.Timer;
  *
  * @author Mylov
  */
-public class luoiToaDo3D  extends JPanel implements ActionListener{
+public class luoiToaDo3D2  extends JPanel implements ActionListener{
     private List <Pixel> pixel= new LinkedList<Pixel>(); // test mouse Click
      Timer tm= new Timer(100, this); // Timer(a,b); a la thoi gian delay;
 
-    
+    HinhTru HT;
      
      public void addPixel(Pixel p){
          pixel.add(p);
@@ -41,54 +41,25 @@ public class luoiToaDo3D  extends JPanel implements ActionListener{
         tm.start();
      }
      public  void demo(Graphics g){
-
-         DuongTron3D abc= new DuongTron3D(new Point3D(30,0, 20), 10);
-         abc.bresenhamCircle(g, Color.yellow);
-        Point3D pf= new Point3D(30,20 ,20 );
-        pf.tranFormToPixel().draw(g, Color.red);
-
          
-//         int x = Integer.parseInt(MainFrame.HX.getText());
-//         int y = Integer.parseInt(MainFrame.HY.getText());
-//         int z = Integer.parseInt(MainFrame.HZ.getText());
-//         int d = Integer.parseInt(MainFrame.dai.getText());
-//         int r = Integer.parseInt(MainFrame.rong.getText());
-//         int h = Integer.parseInt(MainFrame.cao.getText());
-//        
-//         new HinhHop(new Point3D(x, y, z), r, d, h).draw(g, Color.gray);
+         int x = Integer.parseInt(MainFrame.LX.getText());
+         int y = Integer.parseInt(MainFrame.LY.getText());
+         int z = Integer.parseInt(MainFrame.LZ.getText());
          
-        //Integer.parseInt(MainFrame.textField.getText());
+         int r = Integer.parseInt(MainFrame.Lbk.getText());
+         int h = Integer.parseInt(MainFrame.Lcao.getText());
         
-       // Point3D P = new Point3D(10, 0, 0);
-       // P.tranFormToPixel().draw(g, Color.green);
-       // Point3D PP = new Point3D(50, 0, 50);
-        //Point3D Tam = new Point3D(100, 0, 10);
-        //PP.tranFormToPixel().draw(g, Color.green);
-        //new Eclip(PP.tranFormToPixel(), 20, 10).draweEllipseMidPoint(g, Color.yellow, false);
-     // new HinhTru(PP, 25, 40).drawHinhTru(g, Color.green);
-      // new HinhCau(Tam, 30).drawHinhCau(g, Color.yellow);
-       //new CircleLineBreak(PP.tranFormToPixel(), 25).bresenhamCircleBreak(g, Color.yellow);
-       //new RectangleFull(P.tranFormToPixel(), 20, 10).DrawRectFull(g, Color.gray);
-      // new CircleFull(PP.tranFormToPixel(), 10).CircleFull(g, Color.gray);
-       // HinhHop HH = new HinhHop(P, PP, 50);
-       // HH.draw(g, Color.gray);
+        
+       HT=  new HinhTru(new Point3D(x, y, z), r, h);
+       HT.drawHinhTru(g, Color.gray);
+        
          
-
      }
      public void doDraw(Graphics2D g){
        // this.keLine(g);
        this.veTrucToaToa(g);
-//       MainFrame.VeHinhHop.addActionListener(new ActionListener() {
-//           @Override
-//           public void actionPerformed(ActionEvent e) {
-//              MainFrame.jFrame.repaint();
-//                demo(g);
-//                
-//              // MainFrame.jFrame.add(MainFrame.VeHinhHop);
-//           }
-//       } );
-        
-        //demo(g);
+         demo(g);
+
     }
     private void keLine(Graphics2D g){
         Graphics2D g2d=(Graphics2D) g;
@@ -126,6 +97,34 @@ public class luoiToaDo3D  extends JPanel implements ActionListener{
         g2d.drawLine(pixel1.getX()+1,pixel1.getY(),pixel2.getX()+1,pixel2.getY());
         g2d.drawString("OZ", 190, 790);
         g2d.setPaint(Color.BLACK);
+        
+         int x = Integer.parseInt(MainFrame.LX.getText());
+         int y = Integer.parseInt(MainFrame.LY.getText());
+         int z = Integer.parseInt(MainFrame.LZ.getText());
+         int r = Integer.parseInt(MainFrame.Lbk.getText());
+         int h = Integer.parseInt(MainFrame.Lcao.getText());
+         HT=  new HinhTru(new Point3D(x, y, z), r, h);
+         
+        Point3D O= HT.P1;
+        Pixel pixeO= new ChuyenToaDo(O.tranFormToPixel().getX(), O.tranFormToPixel().getY()).NguoiDung_to_May();
+        g2d.drawString("O", pixeO.getX(), pixeO.getY()-8);
+        
+        Point3D pr= HT.P2;
+        Pixel pixepr= new ChuyenToaDo(pr.tranFormToPixel().getX(), pr.tranFormToPixel().getY()).NguoiDung_to_May();
+        
+        Point3D ph= HT.P5;
+        Pixel pixeph= new ChuyenToaDo(ph.tranFormToPixel().getX(), ph.tranFormToPixel().getY()).NguoiDung_to_May();
+       
+        
+        g2d.drawLine(pixeO.getX()+2, pixeO.getY(), pixepr.getX()-10, pixepr.getY());
+        g2d.drawString("<", pixeO.getX(), pixeO.getY()+5);
+        g2d.drawString(">", pixepr.getX()-10, pixepr.getY()+5);
+        g2d.drawString("R = ("+HT.getR()+")", pixeO.getX()+(HT.getR()/2)*5, pixeO.getY()-5);
+        
+        g2d.drawLine(pixepr.getX()+12, pixepr.getY(),pixeph.getX()+12, pixeph.getY() );
+        g2d.drawString("^", pixeph.getX()+10, pixeph.getY()+5);
+        g2d.drawString("v", pixepr.getX()+10, pixepr.getY()+3);
+        g2d.drawString("H = ("+HT.getH()+")", pixepr.getX()+20, pixepr.getY()-5-(HT.getH()/2)*5);
     }
 
     @Override

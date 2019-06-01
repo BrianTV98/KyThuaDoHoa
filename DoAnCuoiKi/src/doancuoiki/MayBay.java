@@ -280,4 +280,51 @@ public class MayBay{
                lua5.QuayQuanhMotDiem(p1, Do), 
                lua6.QuayQuanhMotDiem(p1, Do));
    }
+   
+   public void XoaHienThiThongTin(){
+//        MainFrame.lbname11.setText(" ");
+//        MainFrame.lbdau1.setText (" ");
+//        MainFrame.lbsung1.setText(" ");
+//        MainFrame.lbminh1.setText(" ");
+//        MainFrame.lbCanhDuoi1.setText(" ");
+//        MainFrame.lbcanhtren1.setText(" ");
+//        MainFrame.lbBanhXe11.setText(" ");
+//        MainFrame.lbBanhXe21.setText(" ");
+//        MainFrame.lua11.setText (" ");
+//        MainFrame.lua21.setText (" ");
+//        MainFrame.lua31.setText (" ");
+//        MainFrame.lua41.setText (" ");
+//        MainFrame.lua51.setText (" ");
+//        MainFrame.lua61.setText (" ");
+
+
+        MainFrame.lbname11.setText("MAY BAY");
+        MainFrame.lbdau1.setText ("Đầu  (Hình Chữ Nhật):      ("+dau.getGoc1().getX()+","
+                +dau.getGoc1().getY()+")   ;   ("+dau.getGoc3().getX()+","+dau.getGoc3().getY()+")");
+        MainFrame.lbsung1.setText("Súng (Hinh Chữ Nhât):     ("+sung.getGoc1().getX()+","
+                +sung.getGoc1().getY()+")   ;   ("+sung.getGoc3().getX()+","+sung.getGoc3().getY()+")");
+        MainFrame.lbminh1.setText("Thân (Hinh Chữ Nhât):     ("+minh.getGoc1().getX()+","
+                +minh.getGoc1().getY()+")   ;   ("+minh.getGoc3().getX()+","+minh.getGoc3().getY()+")");
+        MainFrame.lbCanhDuoi1.setText("Cánh Dưới (Hinh Tam Giác):     ("+canhDuoi.getP1().getX()+","+canhDuoi.getP1().getY()+")   ;   ("
+                +canhDuoi.getP2().getX()+","+canhDuoi.getP2().getY()+")   ;   ("+canhDuoi.getP3().getX()+","+canhDuoi.getP3().getY()+")");
+        MainFrame.lbcanhtren1.setText("Cánh Trên (Hinh Tam Giác):     ("+canhTren.getP1().getX()+","+canhTren.getP1().getY()+")   ;   ("
+                +canhTren.getP2().getX()+","+canhTren.getP2().getY()+")   ;   ("+canhTren.getP3().getX()+","+canhTren.getP3().getY()+")");
+        MainFrame.lbBanhXe11.setText("Bánh lái trên (Hinh Tròn):     ("+banhXe1.getTam().getX()+","+banhXe1.getTam().getY()+")   ;   R="
+                +banhXe1.getBankinh());
+        MainFrame.lbBanhXe21.setText("Bánh lái dưới (Hinh Tròn):     ("+banhXe2.getTam().getX()+","+banhXe2.getTam().getY()+")   ;   R="
+                +banhXe2.getBankinh());
+        MainFrame.lua11.setText ("Tia lửa 1  (Đường Thẳng):      ("+lua1.getGoc1().getX()+","+lua1.getGoc1().getY()+")   ;   ("
+                +lua1.getGoc2().getX()+","+lua1.getGoc2().getY()+")");
+        MainFrame.lua21.setText ("Tia lửa 2  (Đường Thẳng):      ("+lua2.getGoc1().getX()+","+lua2.getGoc1().getY()+")   ;   ("
+                +lua2.getGoc2().getX()+","+lua2.getGoc2().getY()+")");
+        MainFrame.lua31.setText ("Tia lửa 3  (Đường Thẳng):      ("+lua3.getGoc1().getX()+","+lua3.getGoc1().getY()+")   ;   ("
+                +lua3.getGoc2().getX()+","+lua3.getGoc2().getY()+")");
+        MainFrame.lua41.setText ("Tia lửa 4  (Đường Thẳng):      ("+lua4.getGoc1().getX()+","+lua4.getGoc1().getY()+")   ;   ("
+                +lua4.getGoc2().getX()+","+lua4.getGoc2().getY()+")");
+        MainFrame.lua51.setText ("Tia lửa 5  (Đường Thẳng):      ("+lua5.getGoc1().getX()+","+lua5.getGoc1().getY()+")   ;   ("
+                +lua5.getGoc2().getX()+","+lua5.getGoc2().getY()+")");
+        MainFrame.lua61.setText ("Tia lửa 6  (Đường Thẳng):      ("+lua6.getGoc1().getX()+","+lua6.getGoc1().getY()+")   ;   ("
+                +lua6.getGoc2().getX()+","+lua6.getGoc2().getY()+")");
+            
+    }
 }
