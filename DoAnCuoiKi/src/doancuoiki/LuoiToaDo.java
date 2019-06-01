@@ -52,6 +52,7 @@ class LuoiToaDo extends JPanel implements ActionListener{ // tao ra jpane để 
         tm.start();
      }
      public  void demo(Graphics g){
+         
 //         new Rect(new Pixel(20,20), new Pixel(50,50 )).draw(g, Color.GREEN);
 //         new Rect(new Pixel(20,20), new Pixel(50,50 )).QuayQuanhDiem(new Pixel(20,0 ), 45).draw(g, Color.GREEN);
 //         new Line(new Rect(new Pixel(20,20), new Pixel(50, 50)).QuayQuanhDiem(new Pixel(20,0), 30).getGoc1(), new Rect(new Pixel(20,20), new Pixel(50, 50)).QuayQuanhDiem(new Pixel(20,0), 30).getGoc2()).Bresenham(g, Color.gray);

@@ -12,7 +12,7 @@ import java.awt.Graphics;
  *
  * @author Mylov
  */
-public class Circle {
+public class CircleLineBreak {
     private Pixel tam;
     private int bankinh;
 
@@ -31,12 +31,22 @@ public class Circle {
         this.bankinh = bankinh;
     }
 
-    public Circle(Pixel tam, int bankinh) {
+    public CircleLineBreak(Pixel tam, int bankinh) {
         this.tam = tam;
         this.bankinh = bankinh;
     }
     public void drawCircle( int x, int y,Graphics g,Color mau)
-{       
+{       if(x%2!=0){
+      //  new Pixel(tam.getX() + x, tam.getY() + y).draw(g,mau);
+      //  new Pixel(tam.getX() - x, tam.getY() + y).draw(g,mau);
+        new Pixel(tam.getX() + x, tam.getY() - y).draw(g,mau);
+        new Pixel(tam.getX() - x, tam.getY() - y).draw(g,mau);
+      //  new Pixel(tam.getX() + y, tam.getY() + x).draw(g,mau);
+      //  new Pixel(tam.getX() - y, tam.getY() + x).draw(g,mau);
+        new Pixel(tam.getX() + y, tam.getY() - x).draw(g,mau);
+        new Pixel(tam.getX() - y, tam.getY() - x).draw(g,mau);
+}
+else{
         new Pixel(tam.getX() + x, tam.getY() + y).draw(g,mau);
         new Pixel(tam.getX() - x, tam.getY() + y).draw(g,mau);
         new Pixel(tam.getX() + x, tam.getY() - y).draw(g,mau);
@@ -46,10 +56,11 @@ public class Circle {
         new Pixel(tam.getX() + y, tam.getY() - x).draw(g,mau);
         new Pixel(tam.getX() - y, tam.getY() - x).draw(g,mau);
 }
+}
     
-    public void bresenhamCircle( Graphics g,Color color)
+    public void bresenhamCircleBreak( Graphics g,Color color)
     {
-       // new Pixel(tam.getX(), tam.getY()).draw(g,color);
+        //new Pixel(tam.getX(), tam.getY()).draw(g,color);
         int x = 0;
         int y = bankinh;
         int p =  (3 - 2 * bankinh);
