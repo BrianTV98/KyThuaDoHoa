@@ -169,7 +169,7 @@ public class luoiToaDo3D1  extends JPanel implements ActionListener{
         Pixel pixeK= new ChuyenToaDo(K.tranFormToPixel().getX(), K.tranFormToPixel().getY()).NguoiDung_to_May();
         g2d.drawString("K", pixeK.getX()-14, pixeK.getY()-8);
         
-        g2d.setPaint(Color.GREEN);
+        g2d.setPaint(Color.black);
         g2d.drawString("TỌA Độ Đỉnh", 0, 10+5);
         g2d.drawString("A("+HH.P1.getX()+","+HH.P1.getY()+","+HH.P1.getZ()+")", 5, 25+5);
         g2d.drawString("B("+HH.P2.getX()+","+HH.P2.getY()+","+HH.P2.getZ()+")", 5, 40+5);

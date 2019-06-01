@@ -96,7 +96,7 @@ void draweEllipseMidPoint(Graphics g,Color color, boolean half_dotted)
             }
             drawEllipse(g,x, y, Color.yellow, half_dotted);
         }
-//    /* Vung 2*/
+    /* Vung 2*/
         p = (int) Math.round(b2 * (x + 0.5)*(x + 0.5) + a2 * (y - 1)*(y - 1) - a2 * b2);
         while(y > 0){
             y--;

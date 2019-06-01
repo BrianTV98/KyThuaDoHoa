@@ -39,6 +39,7 @@ public class HinhHop {
         this.P6 = new Point3D(this.P1.getX(), this.P1.getY()+H, this.P1.getZ());
         this.P7 = new Point3D(this.P2.getX(), this.P2.getY()+H, this.P2.getZ());
         this.P8 = new Point3D(this.P3.getX(), this.P3.getY()+H, this.P3.getZ());
+        
     }
 
 //    public HinhHop(Point3D P1, Point3D P2, Point3D P3, Point3D P4, Point3D P5, Point3D P6, Point3D P7, Point3D P8) {

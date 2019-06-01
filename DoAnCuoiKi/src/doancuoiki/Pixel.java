@@ -16,6 +16,10 @@ public class Pixel  {
     private int x;
     private int y;
 
+    Pixel(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getX() {
         return x;
     }
@@ -70,7 +74,9 @@ public class Pixel  {
         return  new Pixel(this.x*x, this.y*y);
     }
     public Pixel DoiXungQuaDuongThang(Pixel p1, Pixel p2){
-        return new Pixel(x, y).TinhTien(-p1.getX(), -p1.getY()).Quay(-Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).DoiXungOx().Quay(Math.toDegrees(Math.atan((p2.getY()-p1.getY())/(p2.getX()-p1.getX())))).TinhTien(p1.getX(), p1.getY());
+        float a= (float)(p2.getY()-p1.getY())/(p2.getX()-p1.getX());
+        System.out.println(a);
+        return new Pixel(x, y).TinhTien(-p1.getX(), -p1.getY()).Quay(-Math.toDegrees(Math.atan(a))).DoiXungOx().Quay(Math.toDegrees(Math.atan(a))).TinhTien(p1.getX(), p1.getY());
     }
     public Pixel DoiXungQuaDiem(Pixel p1){
         return new Pixel(x, y).TinhTien(-p1.getX(), -p1.getY()).DoiXungO().TinhTien(p1.getX(), p1.getY());

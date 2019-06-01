@@ -59,28 +59,30 @@ public class Point3D {
         point.z,
         point.h
     };
-    float [][]transformMaxtrix = new float[][]{
-        { 1, 0,Math.round( -1*a*Math.cos(phi*PI/180.0)), 0},
-        { 0, 1, Math.round(-1*a*Math.sin(phi*PI/180.0)), 0},
-        { 0, 0, 0, 0},
-        { 0, 0, 0, 1}
-    };
-    point.x =   (int) (vector[0] * transformMaxtrix[0][0] +
-            vector[1] * transformMaxtrix[0][1] +
-            vector[2] * transformMaxtrix[0][2] +
-            vector[3] * transformMaxtrix[0][3]);
-    point.y =   (int) (vector[0] * transformMaxtrix[1][0] +
-            vector[1] * transformMaxtrix[1][1] +
-            vector[2] * transformMaxtrix[1][2] +
-            vector[3] * transformMaxtrix[1][3]);
-    point.z =   (int) (vector[0] * transformMaxtrix[2][0] +
-            vector[1] * transformMaxtrix[2][1] +
-            vector[2] * transformMaxtrix[2][2] +
-            vector[3] * transformMaxtrix[2][3]);
-    point.h =   (int) (vector[0] * transformMaxtrix[3][0] +
-            vector[1] * transformMaxtrix[3][1] +
-            vector[2] * transformMaxtrix[3][2] +
-            vector[3] * transformMaxtrix[3][3]);
+    point.x= (int) Math.round(point.getX() - point.getZ()*Math.cos(45*PI/180.0));
+    point.y= (int) Math.round(point.getY() - point.getZ()*Math.cos(45*PI/180.0));
+//    float [][]transformMaxtrix = new float[][]{
+//        { 1, 0,Math.round( -1*a*Math.cos(Math.toRadians(phi))), 0},
+//        { 0, 1, Math.round(-1*a*Math.sin(Math.toRadians(phi))), 0},
+//        { 0, 0, 0, 0},
+//        { 0, 0, 0, 1}
+//    };
+//    point.x =   (int) (vector[0] * transformMaxtrix[0][0] +
+//            vector[1] * transformMaxtrix[0][1] +
+//            vector[2] * transformMaxtrix[0][2] +
+//            vector[3] * transformMaxtrix[0][3]);
+//    point.y =   (int) (vector[0] * transformMaxtrix[1][0] +
+//            vector[1] * transformMaxtrix[1][1] +
+//            vector[2] * transformMaxtrix[1][2] +
+//            vector[3] * transformMaxtrix[1][3]);
+//    point.z =   (int) (vector[0] * transformMaxtrix[2][0] +
+//            vector[1] * transformMaxtrix[2][1] +
+//            vector[2] * transformMaxtrix[2][2] );//+
+////            vector[3] * transformMaxtrix[2][3]);
+//    point.h =   (int) (vector[0] * transformMaxtrix[3][0] +
+//            vector[1] * transformMaxtrix[3][1] +
+//            vector[2] * transformMaxtrix[3][2] +
+//            vector[3] * transformMaxtrix[3][3]);
      return new Pixel(point.x, point.y);
     }
     

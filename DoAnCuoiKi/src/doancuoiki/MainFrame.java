@@ -21,7 +21,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import org.omg.CORBA.MARSHAL;
 
 /**
  *
@@ -29,24 +31,46 @@ import javax.swing.JTextField;
  */
 public class MainFrame {
     static JFrame jFrame;
-    static  JPanel jhinhhop;
     LuoiToaDo luoi;
+    LuoiToaDoThuCong luoiThuCong= new LuoiToaDoThuCong();
     luoiToaDo3D luoi3d;
     luoiToaDo3D1 luoi3d1;
     luoiToaDo3D2 luoi3d2;
     luoiToaDo3D3 luoi3d3;
     
+    static int dem;
+    
     static JLabel infor;
     static JLabel developer1;
     static JLabel developer2;
     static JLabel developer3 ;
+    static JLabel developer4;
   
+    static JTextField X1= new JTextField();
+    static JTextField Y1= new JTextField();
+    static JTextField X2= new JTextField();
+    static JTextField Y2= new JTextField();
+    static JTextField txtDo = new JTextField();
+    
     static Button btn2D= new Button("2D");
     static Button btn3D =new Button("3D");
-    static Button VeHinhHop = new Button("VeHinhHop");
-    static Button VeLangTru = new Button("VeLangTru");
-    static Button VeHinhChop = new Button("VeHinhChop");
+    static Button btnVeHinhHop = new Button("btnVeHinhHop");
+    static Button btnVeHinhLangTru = new Button("btnVeHinhLangTru");
+    static Button btnVeHinhChop = new Button("btnVeHinhChop");
     
+    //chuc nang tu dong va thu cong cua 2D 
+    static  Button btn2DAutoMa= new Button();
+    static  Button btn2DThuCong= new Button();
+        // chuc băng Thủ Công
+        static Button btnDXOx= new Button();
+        static Button btnDXOy = new Button();
+        static Button btnDXO= new Button();
+        static Button btnDXDiem= new Button();
+        static Button btnDXDT= new Button();
+        static Button btnQuayO= new Button();
+        static Button btnQuayDiem= new Button();
+        static Button btnTinhTien= new Button();
+        static Button btnScaling= new Button();
     // Hinh Hop
     static JTextField HX, HY, HZ, dai, rong, cao;
     static JLabel TamHinhHop, ChieuDai, ChieuRong, ChieuCao;
@@ -67,8 +91,8 @@ public class MainFrame {
     
     //XoaThongTin
     static JLabel xoathongtin;
-    static JLabel lbname11,lbsung1,lbdau1,lbminh1,lbcanhtren1,lbCanhDuoi1,lbBanhXe11,lbBanhXe21,
-                    lua11, lua21, lua31, lua41,lua51,lua61;
+//    static JLabel lbname11,lbsung1,lbdau1,lbminh1,lbcanhtren1,lbCanhDuoi1,lbBanhXe11,lbBanhXe21,
+//                    lua11, lua21, lua31, lua41,lua51,lua61;
 
       //may bay
     static JLabel lbname1,lbsung,lbdau,lbminh,lbcanhtren,lbCanhDuoi,lbBanhXe1,lbBanhXe2,
@@ -79,27 +103,24 @@ public class MainFrame {
     }
 
     private void InitComponents() {
-        
+       
        jFrame= new JFrame("BÁO CÁO ĐỀ TÀI MÔN KỸ THUẬT ĐỒ HỌA"); //To change body of generated methods, choose Tools | Templates.
         jFrame.setSize(1920, 1024);
         jFrame.setLayout(null);
         //--- add thong tin Developer ---
         infor= new JLabel();
         infor.setSize(500,30);
-        infor.setLocation(1680, 900);
+        infor.setLocation(1680, 885);
         infor.setForeground(Color.MAGENTA);
         infor.setText("Develop by Group 3:" );
-        
-//        jhinhhop= new JPanel();
-//        jhinhhop.setSize(350, 600);
-//        jhinhhop.setLocation(1300, 0);
-//        jFrame.add(jhinhhop);
-        
         jFrame.add(infor);
+        
+        //btn 2d tu dong
+        
         
         developer1= new JLabel();
         developer1.setSize(500,30);
-        developer1.setLocation(1700, 915);
+        developer1.setLocation(1700, 900);
         developer1.setForeground(Color.GREEN);
         developer1.setText("        Developer 1: Trần Văn Hiếu" );
         jFrame.add(developer1);
@@ -107,16 +128,26 @@ public class MainFrame {
         developer2= new JLabel();
         developer2.setSize(500,30);
         developer2.setForeground(Color.GREEN);
-        developer2.setLocation(1700, 930);
+        developer2.setLocation(1700, 915);
         developer2.setText("        Developer 2: Lê Tấn Đạt" );
         jFrame.add(developer2);
         
         developer3= new JLabel();
         developer3.setSize(500,30);
         developer3.setForeground(Color.GREEN);
-        developer3.setLocation(1700, 945);
+        developer3.setLocation(1700, 930);
         developer3.setText("        Developer 3: Võ Tuấn An" );
         jFrame.add(developer3);
+        //
+        
+        developer4= new JLabel();
+        developer4.setSize(500,30);
+        developer4.setLocation(1700, 945);
+        developer4.setForeground(Color.GREEN);
+        developer4.setText("        Developer 4: Lý Thiên Du" );
+        jFrame.add(developer4);
+        
+        
         // tao khung toa do chinh
         luoi= new LuoiToaDo();
         luoi.setSize(1200, 800);
@@ -124,9 +155,12 @@ public class MainFrame {
 //        jFrame.add(luoi);
         luoi.addMouseListener(new PixelListener(luoi));
         luoi.setVisible(true);
-//        addThongTinMayBay();
 //        ThongTinZombie();
-        
+//         luoiThuCong =new LuoiToaDoThuCong();
+         luoiThuCong.setSize(1200, 800);
+         luoiThuCong.setLocation(0, 0);
+//         luoiThuCong.addMouseListener(new PixelListener(luoiThuCong));
+         luoiThuCong.setVisible(true);
         //--- khoi tao luoi 3d;
         luoi3d= new luoiToaDo3D();
         luoi3d.setSize(1200, 800);
@@ -155,72 +189,37 @@ public class MainFrame {
         luoi3d3.setVisible(true);
        
         
-        ///---set Btn----
-        btn2D.setLocation(1300, 600);
+        ///---set Btn2D----
+        btn2D.setLocation(1300, 500);
         btn2D.setLabel(" Phan 2D");
         btn2D.setSize(300, 30);
-        btn2D.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jFrame.remove(luoi3d);
-                jFrame.remove(luoi3d1);
-                jFrame.remove(luoi3d2);
-                jFrame.remove(luoi3d3);
-                jFrame.repaint();
-                addThongTinMayBay();
-                ThongTinZombie();
-                jFrame.add(luoi);
-               jFrame.repaint();
-                //To change body of generated methods, choose Tools | Templates.
-            }
-        });
         jFrame.add(btn2D);
+        //----set Btn2D tu dong;
+        btn2DAutoMa.setLabel("Tu Dong");
+        btn2DAutoMa.setSize(80, 30);
+        btn2DAutoMa.setLocation(1300,550);
+        jFrame.add(btn2DAutoMa);
+        //--- set Btn2D thu cong
+        btn2DThuCong.setLabel("Thu Cong");
+        btn2DThuCong.setSize(80, 30);
+        btn2DThuCong.setLocation(1400,550);
+        jFrame.add(btn2DThuCong);
         //---set Btn3D---
         btn3D.setLabel("Phan 3D");
         btn3D.setSize(300, 30);
         btn3D.setLocation(1300, 650);
         jFrame.add(btn3D);
-        btn3D.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-           DeleteThongTinMayBay();
-               jFrame.remove(luoi); //To change body of generated methods, choose Tools | Templates.
-               jFrame.remove(luoi3d1);
-               jFrame.remove(luoi3d2);
-               jFrame.remove(luoi3d3);
-               //jFrame.remove();
-               jFrame.repaint();
-              
-           // DeleteThongTinMayBay();
-               jFrame.add(luoi3d);
-              
+         
         
-               jFrame.repaint(); 
-               
-            }
-        });
+        //set btnVeHinhHop
+        btnVeHinhHop.setLabel("Ve Hinh Hop");
+        btnVeHinhHop.setSize(170, 30);
+        btnVeHinhHop.setLocation(1300, 700);
+        jFrame.add(btnVeHinhHop);
         
-        //set VeHinhHop
-        VeHinhHop.setLabel("Ve Hinh Hop");
-        VeHinhHop.setSize(170, 30);
-        VeHinhHop.setLocation(1300, 700);
-        jFrame.add(VeHinhHop);
-        VeHinhHop.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-              jFrame.remove(luoi);
-              jFrame.remove(luoi3d);
-              jFrame.remove(luoi3d2);
-              jFrame.remove(luoi3d3);
-              jFrame.repaint();
-              //XoaThongTin();
-              jFrame.add(luoi3d1);
-              jFrame.repaint();
-           }
-       });
         
         TamHinhHop= new JLabel();
-        TamHinhHop.setText("Toa Do Ve");
+        TamHinhHop.setText("Toa Do A");
         TamHinhHop.setForeground(Color.green);
        // TamHinhHop.setBackground(Color.PINK);
         TamHinhHop.setSize(200, 30);
@@ -287,25 +286,14 @@ public class MainFrame {
         cao.setSize(50, 30);
         jFrame.add(cao);
         
-        //set VeLangTru
-        VeLangTru.setLabel("Ve Lang Tru");
-        VeLangTru.setSize(170, 30);
-        VeLangTru.setLocation(1470+5, 700);
-        jFrame.add(VeLangTru);
-        VeLangTru.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               jFrame.remove(luoi);
-               jFrame.remove(luoi3d);
-               jFrame.remove(luoi3d1);
-               jFrame.remove(luoi3d3);
-               jFrame.repaint();
-               jFrame.add(luoi3d2);
-               jFrame.repaint();
-           }
-       });
+        //set btnVeHinhLangTru
+        btnVeHinhLangTru.setLabel("Ve Lang Tru");
+        btnVeHinhLangTru.setSize(170, 30);
+        btnVeHinhLangTru.setLocation(1470+5, 700);
+        jFrame.add(btnVeHinhLangTru);
+        
         TamLangTru= new JLabel();
-        TamLangTru.setText("Tam Lang Tru");
+        TamLangTru.setText("Tam O Lang Tru");
         TamLangTru.setForeground(Color.yellow);
        // TamHinhHop.setBackground(Color.PINK);
         TamLangTru.setSize(200, 30);
@@ -359,25 +347,14 @@ public class MainFrame {
         jFrame.add(Lcao);
         
         // Ve Hinh Chop
-        VeHinhChop.setLabel("Ve Hinh CHop");
-        VeHinhChop.setSize(170, 30);
-        VeHinhChop.setLocation(1650, 700);
-        jFrame.add(VeHinhChop);
-        VeHinhChop.addActionListener(new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-              jFrame.remove(luoi);
-              jFrame.remove(luoi3d);
-              jFrame.remove(luoi3d1);
-              jFrame.remove(luoi3d2);
-              jFrame.repaint();
-              jFrame.add(luoi3d3);
-              jFrame.repaint();
-           }
-       });
+        btnVeHinhChop.setLabel("Ve Hinh CHop");
+        btnVeHinhChop.setSize(170, 30);
+        btnVeHinhChop.setLocation(1650, 700);
+        jFrame.add(btnVeHinhChop);
+        
         
         TamHinhCHop= new JLabel();
-        TamHinhCHop.setText("Toa Do Ve");
+        TamHinhCHop.setText("Toa Do A");
         TamHinhCHop.setForeground(Color.red);
        // TamHinhHop.setBackground(Color.PINK);
         TamHinhCHop.setSize(200, 30);
@@ -443,24 +420,423 @@ public class MainFrame {
         Ccao.setLocation(1430+350, 820);
         Ccao.setSize(50, 30);
         jFrame.add(Ccao);
-        
-        //-----
+        btnNhapThuCong();
+        addThongTinMayBay();
+         ThongTinZombie();
+       
+        DisableHinhHop();
+        DisableHinhLangTru();
+        DisableHinhChop();
+        DisEnable2D();
+        ButtonNhap();
+         //-----
         jFrame.setVisible(true);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      
     }
-    
-    
-    public  void XoaThongTin(){
-//        xoathongtin= new JLabel();
-//        xoathongtin.setText("  ");
-//        xoathongtin.setSize(300, 600);
-//        xoathongtin.setLocation(1300, 0);
-        jFrame.add(jhinhhop);
-        jFrame.setVisible(true);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public void btnNhapThuCong(){
+        txtDo.setText("45");
+        txtDo.setSize(30, 30);
+        txtDo.setLocation(1700, 650);
+        jFrame.add(txtDo);
+        
+        X1.setText("-20");
+        X1.setSize(30, 30);
+        X1.setLocation(1400, 580);
+        jFrame.add(X1);
+        
+        Y1.setText("-20");
+        Y1.setSize(30, 30);
+        Y1.setLocation(1450, 580);
+        jFrame.add(Y1);
+        
+        X2.setText("-20");
+        X2.setSize(30, 30);
+        X2.setLocation(1400, 610);
+        jFrame.add(X2);
+        
+        Y2.setText("-20");
+        Y2.setSize(30, 30);
+        Y2.setLocation(1450, 610);
+        jFrame.add(Y2);
+        
+        btnDXOx.setLabel("DX Ox");
+        btnDXOx.setSize(60, 30);
+        btnDXOx.setLocation(1500,550);
+        jFrame.add(btnDXOx);
+        //dxung Oy
+        
+        btnDXOy.setLabel("DX Oy");
+        btnDXOy.setSize(60, 30);
+        btnDXOy.setLocation(1600,550);
+        jFrame.add(btnDXOy);
+        //doi xung O
+        btnDXO.setLabel("DX O");
+        btnDXO.setSize(60, 30);
+        btnDXO.setLocation(1700,550);
+        jFrame.add(btnDXO);
+        
+        btnDXDiem.setLabel("DX Diem");
+        btnDXDiem.setSize(60, 30);
+        btnDXDiem.setLocation(1500,600);
+        jFrame.add(btnDXDiem);
+        
+        btnDXDT.setLabel("DX DT");
+        btnDXDT.setSize(60, 30);
+        btnDXDT.setLocation(1600,600);
+        jFrame.add(btnDXDT);
+        
+        btnQuayO.setLabel("Quay O");
+        btnQuayO.setSize(60, 30);
+        btnQuayO.setLocation(1700,600);
+        jFrame.add(btnQuayO);
+        
+        btnTinhTien.setLabel("Tinh Tien");
+        btnTinhTien.setSize(60, 30);
+        btnTinhTien.setLocation(1800,550);
+        jFrame.add(btnTinhTien);
+        
+        btnScaling.setLabel("Scaling");
+        btnScaling.setSize(60, 30);
+        btnScaling.setLocation(1800,600);
+        jFrame.add(btnScaling);
+        
+         btnQuayDiem.setLabel("Quay Quanh Diem");
+        btnQuayDiem.setSize(100, 30);
+        btnQuayDiem.setLocation(1780,650);
+        jFrame.add(btnQuayDiem);
+        
+//        btnDXOx,btnDXOy,btnDXO,btnDXDiem,btnDXDT, btnQuayO,btnQuayDiem, btnTinhTien, btnScaling;
     }
-
+    public void DisEnable2DThuCong(){
+        btnDXOx.disable();
+        btnDXOy.disable();
+        btnDXO.disable();
+        btnDXDiem.disable();
+        btnDXDT.disable();
+        btnQuayO.disable();
+        btnQuayDiem.disable();
+        btnTinhTien.disable();
+        btnScaling.disable();
+    }
+    public void Enable2DThuCong(){
+        btnDXOx.enable();
+        btnDXOy.enable();
+        btnDXO.enable();
+        btnDXDiem.enable();
+        btnDXDT.enable();
+        btnQuayO.enable();
+        btnQuayDiem.enable();
+        btnTinhTien.enable();
+        btnScaling.enable();
+    }
+    public  void DisEnable2D(){
+        btn2DAutoMa.disable();
+        btn2DThuCong.disable();
+        btnDXOx.disable();
+        btnDXOy.disable();
+        btnDXO.disable();
+        btnDXDiem.disable();
+        btnDXDT.disable();
+        btnQuayO.disable();
+        btnQuayDiem.disable();
+        btnTinhTien.disable();
+        btnScaling.disable();
+        X1.disable();
+        Y1.disable();
+        X2.disable();
+        Y2.disable();
+        txtDo.disable();
+    }
+    public  void Enable2D(){
+        btn2DAutoMa.enable();
+        btn2DThuCong.enable();
+        btnDXOx.enable();
+        btnDXOy.enable();
+        btnDXO.enable();
+        btnDXDiem.enable();
+        btnDXDT.enable();
+        btnQuayO.enable();
+        btnQuayDiem.enable();
+        btnTinhTien.enable();
+        btnScaling.enable();
+    }
+    public void ButtonNhap(){
+         btn2D.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Enable2D();
+                DisableHinhHop();
+                DisableHinhLangTru();
+                DisEnable2DThuCong();
+                DisableHinhChop();
+                jFrame.remove(luoi3d);
+                jFrame.remove(luoi3d1);
+                jFrame.remove(luoi3d2);
+                jFrame.remove(luoi3d3);
+                jFrame.repaint();
+//                jFrame.add(luoi);
+//               jFrame.repaint();
+                //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+         btn2DAutoMa.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+               DisEnable2DThuCong();
+               jFrame.remove(luoiThuCong);
+               jFrame.add(luoi);
+               jFrame.repaint();
+             }
+         });
+         btn2DThuCong.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 Enable2DThuCong();
+                 jFrame.remove(luoi);
+                 jFrame.add(luoiThuCong);
+                 jFrame.repaint();
+             }
+         });
+        btn3D.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               DisEnable2D();
+               XoaThongTinMayBay();
+               XoaThongTinZombie();
+               EnableHinhHop();
+               EnableHinhLangTru();
+               EnableHinhChop();
+               jFrame.remove(luoiThuCong);
+               jFrame.remove(luoi); //To change body of generated methods, choose Tools | Templates.
+               jFrame.remove(luoi3d1);
+               jFrame.remove(luoi3d2);
+               jFrame.remove(luoi3d3);
+               jFrame.repaint();      
+               jFrame.add(luoi3d);
+               jFrame.repaint(); 
+               
+            }
+        });
+        btnVeHinhChop.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+              jFrame.remove(luoi);
+              jFrame.remove(luoi3d);
+              jFrame.remove(luoi3d1);
+              jFrame.remove(luoi3d2);
+              jFrame.repaint();
+              jFrame.add(luoi3d3);
+              jFrame.repaint();
+           }
+       });
+        btnVeHinhHop.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+             
+               jFrame.remove(luoi);
+              jFrame.remove(luoi3d);
+              jFrame.remove(luoi3d2);
+              jFrame.remove(luoi3d3);
+              jFrame.repaint();
+              jFrame.add(luoi3d1);
+              jFrame.repaint();
+           }
+       });
+        btnVeHinhLangTru.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               jFrame.remove(luoi);
+               jFrame.remove(luoi3d);
+               jFrame.remove(luoi3d1);
+               jFrame.remove(luoi3d3);
+               jFrame.repaint();
+               jFrame.add(luoi3d2);
+               jFrame.repaint();
+           }
+       });
+        btnDXOx.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 DisableP1();
+                 DisablePoint2();
+                 txtDo.disable();
+                 jFrame.repaint();
+                 dem=1;
+             }
+         });
+        btnDXOy.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 DisableP1();
+                 DisablePoint2();
+                 txtDo.disable();
+                 jFrame.repaint();
+                dem=2;
+             }
+         });
+        btnDXO.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 DisableP1();
+                 DisablePoint2();
+                 txtDo.enable();
+                 jFrame.repaint();
+                dem=3;
+             }
+         });
+        btnDXDiem.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 DisablePoint2();
+                 EnablePoint1();
+                 jFrame.repaint();
+                 dem=4;
+             }
+         });
+        btnDXDT.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 jFrame.repaint();
+                 EnablePoint2();
+                 EnablePoint1();
+                 txtDo.disable();
+                 jFrame.repaint();
+                dem=5;
+             }
+         });
+        btnQuayO.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {//To change body of generated methods, choose Tools | Templates.
+                 DisableP1();
+                 DisablePoint2();
+                 txtDo.enable();
+                 jFrame.repaint();
+                 dem=6;
+             }
+         });
+        btnTinhTien.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                  EnablePoint1();
+                  DisablePoint2();
+                  txtDo.disable();
+                  jFrame.repaint();
+                  dem=7;
+             }
+         });
+        btnScaling.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 EnablePoint1();
+                  DisablePoint2();
+                  txtDo.disable();
+                  jFrame.repaint();
+                  dem=8; //To change body of generated methods, choose Tools | Templates.
+             }
+         });
+        btnQuayDiem.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                    EnablePoint1();
+                  DisablePoint2();
+                  txtDo.enable();
+                  jFrame.repaint();
+                  dem=9; //To change body of generated methods, choose Tools | Templates.
+             }
+         });
+    }
+    public void EnablePoint1(){
+        X1.enable();//To change body of generated methods, choose Tools | Templates.
+        Y1.enable();
+    }
+    public void DisableP1(){
+        X1.disable();
+        Y1.disable();
+    }
+    public void EnablePoint2(){
+        X2.enable();
+        Y2.enable();
+    }
+    public  void DisablePoint2(){
+        X2.disable();
+        Y2.disable();
+    }
+    public void DisableHinhLangTru(){
+        btnVeHinhLangTru.disable();
+        LX.disable();
+        LY.disable();
+        LZ.disable();
+        Lbk.disable();
+        Lcao.disable();
+        TamLangTru.disable();
+        BanKinhL.disable();
+        ChieuCaoL.disable();
+    }
+     public void DisableHinhChop(){
+        btnVeHinhChop.disable();
+        CX.disable();
+        CY.disable();
+        CZ.disable();
+        Cdai.disable();
+        Crong.disable();
+        Ccao.disable();
+        TamHinhCHop.disable();
+        CChieuDai.disable();
+        CChieuRong.disable();
+        CChieuCao.disable();
+    }
+     public void EnableHinhChop(){
+        btnVeHinhChop.enable();
+        CX.enable();
+        CY.enable();
+        CZ.enable();
+        Cdai.enable();
+        Crong.enable();
+        Ccao.enable();
+        TamHinhCHop.enable();
+        CChieuDai.enable();
+        CChieuRong.enable();
+        CChieuCao.enable();
+    }
+    public void EnableHinhLangTru(){
+        btnVeHinhLangTru.enable();
+        LX.enable();
+        LY.enable();
+        LZ.enable();
+        Lbk.enable();
+        Lcao.enable();
+        TamLangTru.enable();
+        BanKinhL.enable();
+        ChieuCaoL.enable();
+    }
+    public void DisableHinhHop(){
+        btnVeHinhHop.disable();
+        HX.disable();
+        HY.disable();
+        HZ.disable();
+        dai.disable();
+        rong.disable();
+        cao.disable();
+        TamHinhHop.disable();
+        ChieuDai.disable();
+        ChieuRong.disable();
+        ChieuCao.disable();
+         
+    }
+    public void EnableHinhHop(){
+        btnVeHinhHop.enable();
+        HX.enable();
+        HY.enable();
+        HZ.enable();
+        dai.enable();
+        rong.enable();
+        cao.enable();
+        TamHinhHop.enable();
+        ChieuDai.enable();
+        ChieuRong.enable();
+        ChieuCao.enable();
+    }
     public  void addThongTinMayBay(){
          lbname1= new JLabel();
         lbname1.setSize(300, 30);
@@ -604,93 +980,6 @@ public class MainFrame {
         jFrame.add(lbchanphai);
         
     }
-    public  void DeleteThongTinMayBay(){
-         lbname11= new JLabel();
-        lbname11.setSize(300, 30);
-        lbname11.setLocation(1300, 0);
-        lbname11.setForeground(Color.gray);
-        jFrame.add(lbname11);
-        //dau
-        lbdau1= new JLabel();
-        lbdau1.setSize(300, 30);
-        lbdau1.setLocation(1300, 20*2);
-        lbdau1.setForeground(Color.gray);
-        jFrame.add(lbdau1);
-        //sung
-        lbsung1= new JLabel();
-        lbsung1.setSize(300, 30);
-        lbsung1.setLocation(1300, 20);
-        lbsung1.setForeground(Color.gray);
-        jFrame.add(lbsung1);
-        
-        lbminh1= new JLabel();
-        lbminh1.setSize(300, 30);
-        lbminh1.setLocation(1300, 20*3);
-        lbminh1.setForeground(Color.gray);
-        jFrame.add(lbminh1);
-        
-        lbcanhtren1= new JLabel();
-        lbcanhtren1.setSize(400, 30);
-        lbcanhtren1.setLocation(1300, 20*4);
-        lbcanhtren1.setForeground(Color.gray);
-        jFrame.add(lbcanhtren1);
-        
-        lbCanhDuoi1= new JLabel();
-        lbCanhDuoi1.setSize(400, 30);
-        lbCanhDuoi1.setLocation(1300, 20*5);
-        lbCanhDuoi1.setForeground(Color.gray);
-        jFrame.add(lbCanhDuoi1);
-        
-        lbBanhXe11= new JLabel();
-        lbBanhXe11.setSize(300, 30);
-        lbBanhXe11.setLocation(1300, 20*6);
-        lbBanhXe11.setForeground(Color.gray);
-        jFrame.add(lbBanhXe11);
-        
-        lbBanhXe21= new JLabel();
-        lbBanhXe21.setSize(300, 30);
-        lbBanhXe21.setLocation(1300, 20*7);
-        lbBanhXe21.setForeground(Color.gray);
-        jFrame.add(lbBanhXe21);
-        
-        lua11= new JLabel();
-        lua11.setSize(300, 30);
-        lua11.setLocation(1300, 20*8);
-        lua11.setForeground(Color.gray);
-        jFrame.add(lua11);
-        
-        lua21= new JLabel();
-        lua21.setSize(300, 30);
-        lua21.setLocation(1300, 20*9);
-        lua21.setForeground(Color.gray);
-        jFrame.add(lua21);
-        
-        lua31= new JLabel();
-        lua31.setSize(300, 30);
-        lua31.setLocation(1300, 20*10);
-        lua31.setForeground(Color.gray);
-        jFrame.add(lua31);
-        
-        lua41= new JLabel();
-        lua41.setSize(300, 30);
-        lua41.setLocation(1300, 20*11);
-        lua41.setForeground(Color.gray);
-        jFrame.add(lua41);
-        
-        lua51= new JLabel();
-        lua51.setSize(300, 30);
-        lua51.setLocation(1300, 20*12);
-        lua51.setForeground(Color.gray);
-        jFrame.add(lua51);
-        
-        lua61= new JLabel();
-        lua61.setSize(300, 30);
-        lua61.setLocation(1300, 20*13);
-        lua61.setForeground(Color.gray);
-        jFrame.add(lua61);
-        
-    }
-    
     public  void addThongTinHinhHop(){
         hhname= new JLabel();
         hhname.setSize(300, 30);
@@ -704,6 +993,35 @@ public class MainFrame {
         hhda.setForeground(Color.blue);
         jFrame.add(hhda);
     }
+    public void XoaThongTinMayBay(){
+      lbname1.setText("");
+       lbdau.setText ("");
+      lbsung.setText("");
+        lbminh.setText("");
+        lbCanhDuoi.setText("");
+        lbcanhtren.setText("");
+      lbBanhXe1.setText("");
+        lbBanhXe2.setText("");
+        lua1.setText ("");
+       lua2.setText ("");
+        lua3.setText ("");
+        lua4.setText ("");
+        lua5.setText ("");
+        lua6.setText ("");
+            
+    }
+    public void XoaThongTinZombie(){
+        lbname2.setText("");
+        lbdauzom.setText("");
+        lbminhzom.setText("");
+        lbmattrai.setText("");
+        lbmatphai.setText("");
+        lbtayphai.setText("");
+        lbtaytrai.setText("");
+        lbchantrai.setText("");
+        lbchanphai.setText("");
+    }
+    
 }
 
 

@@ -42,19 +42,19 @@ public class DuongTron3D {
     public void drawCircle( int x, int y,Graphics g,Color mau)
 {       
         
-        new Point3D(tam.getX() + x,0, tam.getZ()+ y).tranFormToPixel().draw(g,mau);
-        new Point3D(tam.getX() - x,0, tam.getZ() + y).tranFormToPixel().draw(g,mau);
-        new Point3D(tam.getX() + x,0, tam.getZ() - y).tranFormToPixel().draw(g,mau);
-        new Point3D(tam.getX() - x,0, tam.getZ() - y).tranFormToPixel().draw(g,mau);
-        new Point3D(tam.getX() + y,0, tam.getZ() + x).tranFormToPixel().draw(g,mau);
-        new Point3D(tam.getX() - y,0, tam.getZ() + x).tranFormToPixel().draw(g,mau);
-        new Point3D(tam.getX() + y,0, tam.getZ() - x).tranFormToPixel().draw(g,mau);
-        new Point3D(tam.getX() - y,0, tam.getZ() - x).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() + x,tam.getY(), tam.getZ()+ y).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() - x,tam.getY(), tam.getZ() + y).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() + x,tam.getY(), tam.getZ() - y).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() - x,tam.getY(), tam.getZ() - y).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() + y,tam.getY(), tam.getZ() + x).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() - y,tam.getY(), tam.getZ() + x).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() + y,tam.getY(), tam.getZ() - x).tranFormToPixel().draw(g,mau);
+        new Point3D(tam.getX() - y,tam.getY(), tam.getZ() - x).tranFormToPixel().draw(g,mau);
 }
     
     public void bresenhamCircle( Graphics g,Color color)
     {
-        new Point3D(tam.getX(),0, tam.getZ()).tranFormToPixel().draw(g,color);
+        new Point3D(tam.getX(),tam.getY(), tam.getZ()).tranFormToPixel().draw(g,color);
         int x = 0;
         int y = bankinh;
         int p =  (3 - 2 * bankinh);

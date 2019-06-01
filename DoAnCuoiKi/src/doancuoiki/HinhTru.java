@@ -101,10 +101,12 @@ public class HinhTru {
     public void drawHinhTru(Graphics g, Color mau){
 //        new CircleLineBreak(P1.tranFormToPixel(), R).bresenhamCircleBreak(g, mau);
 //        new Circle(P4.tranFormToPixel(), R).bresenhamCircle(g, mau);
-        new Eclip(P1.tranFormToPixel(), R, R/2).draweEllipseMidPoint(g, mau, false);
-        new Eclip(P4.tranFormToPixel(), R, R/2).draweEllipseMidPoint(g, mau, false);
+          new DuongTron3D(P1, R).bresenhamCircle(g, mau);
+          new DuongTron3D(P4, R).bresenhamCircle(g, mau);
+//        new Eclip(P1.tranFormToPixel(), R, R/2).draweEllipseMidPoint(g, mau, false);
+//        new Eclip(P4.tranFormToPixel(), R, R/2).draweEllipseMidPoint(g, mau, false);
         new Line(P2.tranFormToPixel(), P5.tranFormToPixel()).Bresenham(g, Color.yellow);
-        new Line(P3.tranFormToPixel(), P6.tranFormToPixel()).Bresenham(g, Color.yellow);
+        new Line(P3.tranFormToPixel(), P6.tranFormToPixel()).linebreak(g, Color.yellow);
     }
     
     
