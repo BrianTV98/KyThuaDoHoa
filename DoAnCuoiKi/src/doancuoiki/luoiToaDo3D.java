@@ -41,7 +41,10 @@ public class luoiToaDo3D  extends JPanel implements ActionListener{
         tm.start();
      }
      public  void demo(Graphics g){
-         
+         DuongTron3D abc= new DuongTron3D(new Point3D(30,0, 20), 10);
+         abc.bresenhamCircle(g, Color.yellow);
+        Point3D pf= new Point3D(30,20 ,20 );
+        pf.tranFormToPixel().draw(g, Color.red);
      }
       public void doDraw(Graphics2D g){
         this.keLine(g);
