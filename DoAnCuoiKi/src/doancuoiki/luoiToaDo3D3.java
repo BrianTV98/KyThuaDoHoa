@@ -20,10 +20,11 @@ import javax.swing.Timer;
  *
  * @author Mylov
  */
-public class luoiToaDo3D  extends JPanel implements ActionListener{
+public class luoiToaDo3D3  extends JPanel implements ActionListener{
     private List <Pixel> pixel= new LinkedList<Pixel>(); // test mouse Click
      Timer tm= new Timer(100, this); // Timer(a,b); a la thoi gian delay;
 
+     HinhChop HC;
     
      
      public void addPixel(Pixel p){
@@ -43,13 +44,15 @@ public class luoiToaDo3D  extends JPanel implements ActionListener{
      public  void demo(Graphics g){
          
          
-//         int x = Integer.parseInt(MainFrame.HX.getText());
-//         int y = Integer.parseInt(MainFrame.HY.getText());
-//         int z = Integer.parseInt(MainFrame.HZ.getText());
-//         int d = Integer.parseInt(MainFrame.dai.getText());
-//         int r = Integer.parseInt(MainFrame.rong.getText());
-//         int h = Integer.parseInt(MainFrame.cao.getText());
-//        
+         int x = Integer.parseInt(MainFrame.CX.getText());
+         int y = Integer.parseInt(MainFrame.CY.getText());
+         int z = Integer.parseInt(MainFrame.CZ.getText());
+         int d = Integer.parseInt(MainFrame.Cdai.getText());
+         int r = Integer.parseInt(MainFrame.Crong.getText());
+         int h = Integer.parseInt(MainFrame.Ccao.getText());
+       HC = new HinhChop(new Point3D(x, y, z), d, r, h);
+       HC.drawHinhChop(g, Color.red);
+       
 //         new HinhHop(new Point3D(x, y, z), r, d, h).draw(g, Color.gray);
          
         //Integer.parseInt(MainFrame.textField.getText());
@@ -82,7 +85,7 @@ public class luoiToaDo3D  extends JPanel implements ActionListener{
 //           }
 //       } );
         
-        //demo(g);
+        demo(g);
     }
     private void keLine(Graphics2D g){
         Graphics2D g2d=(Graphics2D) g;
@@ -120,6 +123,47 @@ public class luoiToaDo3D  extends JPanel implements ActionListener{
         g2d.drawLine(pixel1.getX()+1,pixel1.getY(),pixel2.getX()+1,pixel2.getY());
         g2d.drawString("OZ", 190, 790);
         g2d.setPaint(Color.BLACK);
+        
+        int x = Integer.parseInt(MainFrame.CX.getText());
+         int y = Integer.parseInt(MainFrame.CY.getText());
+         int z = Integer.parseInt(MainFrame.CZ.getText());
+         int d = Integer.parseInt(MainFrame.Cdai.getText());
+         int r = Integer.parseInt(MainFrame.Crong.getText());
+         int h = Integer.parseInt(MainFrame.Ccao.getText());
+       HC = new HinhChop(new Point3D(x, y, z), d, r, h);
+       
+       //Dinh A
+       Point3D A= HC.P1;
+        Pixel pixeA= new ChuyenToaDo(A.tranFormToPixel().getX(), A.tranFormToPixel().getY()).NguoiDung_to_May();
+        g2d.drawString("A", pixeA.getX()+16, pixeA.getY()-8);
+        
+        //Dinh B
+        Point3D B= HC.P2;
+        Pixel pixeB= new ChuyenToaDo(B.tranFormToPixel().getX(), B.tranFormToPixel().getY()).NguoiDung_to_May();
+        g2d.drawString("B", pixeB.getX()+8, pixeB.getY()-8);
+        
+        //Dinh C
+        Point3D C= HC.P3;
+        Pixel pixeC= new ChuyenToaDo(C.tranFormToPixel().getX(), C.tranFormToPixel().getY()).NguoiDung_to_May();
+        g2d.drawString("C", pixeC.getX()-8, pixeC.getY()+16);
+        
+        //Dinh D
+        Point3D D= HC.P4;
+        Pixel pixeD= new ChuyenToaDo(D.tranFormToPixel().getX(), D.tranFormToPixel().getY()).NguoiDung_to_May();
+        g2d.drawString("D", pixeD.getX(), pixeD.getY()+16);
+        
+        //Dinh E
+        Point3D E= HC.P5;
+        Pixel pixeE= new ChuyenToaDo(E.tranFormToPixel().getX(), E.tranFormToPixel().getY()).NguoiDung_to_May();
+        g2d.drawString("E", pixeE.getX(), pixeE.getY()-8);
+        
+        g2d.setPaint(Color.RED);
+        g2d.drawString("TỌA Độ Đỉnh", 0, 15);
+        g2d.drawString("A("+HC.P1.getX()+","+HC.P1.getY()+","+HC.P1.getZ()+")", 5, 25+5);
+        g2d.drawString("B("+HC.P2.getX()+","+HC.P2.getY()+","+HC.P2.getZ()+")", 5, 40+5);
+        g2d.drawString("C("+HC.P3.getX()+","+HC.P3.getY()+","+HC.P3.getZ()+")", 5, 55+5);
+        g2d.drawString("D("+HC.P4.getX()+","+HC.P4.getY()+","+HC.P4.getZ()+")", 5, 70+5);
+        g2d.drawString("E("+HC.P5.getX()+","+HC.P5.getY()+","+HC.P5.getZ()+")", 5, 85+5);
     }
 
     @Override
